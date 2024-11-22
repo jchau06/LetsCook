@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title }}</title>
+    <link rel="stylesheet" href="../scripts/recipes.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+</head>
+
+
+<body class="body-container">
+
+    <div class="left-container">
+
+        <div class="new-input-container">
+            <img class="cooking_image" src="../static/file.jpg" alt="cook">
+            <form id="recipeForm" action="" method="POST" enctype="multipart/form-data">
+                <textarea class="large_input_textbox" id="cooking_recipe_input" rows="4" cols="50" placeholder="&quot;Can you make this less spicy?&quot;"></textarea>
+            </form>
+
+            <input class="submit-button" type="submit" value="submit" form="recipeForm">
+
+        </div>
+
+
+        <div class="ingredients-container">
+            <h1 class="ingredient-title">Ingredients</h1>
+            <div class="ingredients-text">
+                {% for item in ingredients_list %}
+                    <p>{{ item }}</p>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+    <div class="right-container">
+
+        <div class="right-gap-container"></div>
+
+        <div class="complete-bio-container">
+
+            <div class="image-container">
+                <img src="{{ image_url }}" alt="{{ recipe_title }}" class="edit-image">
+    
+            </div>
+
+            <div class="bio-container">
+
+                <div class="name-container">
+                    <h1 class="recipe_title">{{ recipe_title }}</h1>
+                </div>
+
+                <div class="country-container">
+                    <h4 class="country-title">country of origin</h4>
+                </div>
+
+                <div class="time-container">
+                    <h4 class="time-title">10 hrs</h4>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+        <div class="right-gap-container"></div>
+
+        <div class="instructions-container">
+            <div class="instruction-title-container">
+                <h1 class="instructions-title">Instructions</h1>
+            </div>
+            
+            <div class="text-instruction-container">
+                <div class="instructions-text">
+                    {% for item in instructions_text %}
+                        <p>{{ item }}</p>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

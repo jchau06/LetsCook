@@ -1,0 +1,217 @@
+/* Stylesheet used to format the recipe tempalate page. */
+
+.body-container{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.left-container{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 100%;
+}
+
+.ingredients-container{
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 3.5%;
+    flex-direction: column;
+    background-color: #BFBFBF;
+    width: 22.5%;
+    height: 50vh;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.ingredient-title{
+    font-family: 'Inter';
+    font-size: 30px;
+    font-weight: normal;
+}
+
+.new-input-container{
+    display: flex;
+    height: 50vh;
+}
+
+.right-container{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 100%;
+}
+
+.right-gap-container{
+    height: 5vh;
+}
+
+.complete-bio-container{
+    height: 40vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.bio-container{
+    flex-direction: column;
+    display: flex;
+    width: 55%;
+}
+
+.name-container{
+    display: flex;
+    height: 50vh;
+}
+
+.recipe_title{
+    font-family: 'Poppins';
+    font-weight: normal;
+    font-size: 35px;
+    margin-top: 60px;
+    margin-left: 20px;
+}
+
+.recipe_title:after {
+    content: ""; 
+    display: block; 
+    width: 100%; 
+    padding-top: 1px; 
+    border-bottom: 1px solid #015C65; 
+}
+
+.country-title{
+    font-family: 'Poppins';
+    margin-top: -5px;
+    margin-left: 20px;
+}
+
+.time-title{
+    font-family: 'Poppins';
+    margin-top: -5px;
+    margin-left: 20px;
+}
+
+.country-container{
+    display: flex;
+    height: 15vh;
+}
+
+.time-container{
+    display: flex;
+    height: 35vh;
+}
+
+.image-container{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    text-align: center;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.edit-image{
+    border-radius: 30px;
+    max-height:100%; 
+    max-width:100%;
+}
+
+.instructions-container{
+    display: flex;
+    flex-direction: column;
+    background-color:#F3F3F3;
+    padding-left: 30px;
+    height: 50vh;
+    width: 100%;
+}
+
+.instructions-title{
+    font-family: 'Inter';
+    font-weight: normal;
+}
+
+.instructions-text{
+    height: 100%;
+    text-align: left;
+    padding-top: 15px;
+    padding-left: 30px;
+    border-radius: 5px;
+    overflow-y: auto;
+    font-family: 'Inter';
+}
+
+.instruction-title-container{
+    height: 20%;
+}
+
+.text-instruction-container{
+    height: 80%;
+}
+
+
+.ingredients-text{
+    height: 100%;
+    font-family: 'Inter';
+    font-size: 16px;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    overflow-y: auto;
+}
+ 
+.cooking_image{
+    width: 350px;
+    height: 275px;
+    padding: 30px;
+    z-index: -10px;
+    position: absolute;
+}
+
+.large_input_textbox{
+    position: absolute;
+    top: 15%;
+    left: 5%;
+    width: 175px;
+    height: 125px;
+    font-size: 12px;
+    font-family: 'Poppins';
+}
+
+.submit-button{
+    position: absolute;
+    top: 28%;
+    left: 8.5%;
+    background-color: #6CE5AD;
+    border-radius: 5px;
+    width: 80px;
+    border: none;
+    font-family: 'Poppins';
+}
+
+
+/* Do we need mobile support? We can define this with extra @media stuff 
+as needed to add extra functionality. */
+
+/* I just set some px value, can be changed later as we fine-tune it, 
+though it seems good for now. */
+
+/* Modifies the layout of the page such that elements stack vertically when
+the px threshold is exceeded. */
+@media (max-width: 800px) {
+    /* Adjust the elements to be stacked vertically and centered. */
+    .full-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Adjust width and add a bit more margin */
+    .image-container,
+    .ingredients-header,
+    .instructions-header {
+        width: 90%;
+        margin: 10px 0;
+    }
+}

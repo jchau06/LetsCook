@@ -1,0 +1,259 @@
+/* Stylesheet used for defining the style of the welcome page, and
+some of the graphical elements, such as floating dots and their animations. */
+
+:root {
+  --primary-color: #33cccc;
+  --secondary-color: #46dac0;
+  --tertiary-color: #6ce5ad;
+  --quaternary-color: #c7f581;
+  --quinary-color: #f8fefe;
+  --bg-color: #e6f4f1
+}
+
+body {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: var(--quinary-color);
+}
+
+.welcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 0vh;
+    z-index: 100;
+
+}
+
+.welcome-text-container {
+    background-color: #e6f4f1cc;   /* Placeholder */
+    border-radius: 50px;
+    height: 20%;
+
+    display: block;
+    margin-top: 60%;
+    width: 50vw;
+}
+
+
+.welcome-title {
+    font: 4em "Poppins";
+    margin: 0px;
+    margin-top: 20px;
+    font-weight: 600;
+    color: #015C65;
+    text-align: center;
+}
+
+.subtext-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.subtext {
+    font: 2.5em "Poppins";
+    color: #015C65;
+    text-align: center;
+    margin: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: 1000;
+}
+
+.typewriter-text {
+  font: 2.5em "Poppins";
+  margin-left: 0px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: 1000;
+  color: #34cccd;
+
+  white-space: nowrap;
+  overflow: hidden;
+
+  border-right: 0.10em solid #34cccd; /* Cursor color */
+  animation: blink-caret 0.75s step-end infinite
+}
+
+/* Blinking Cursor Animation */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #34cccd; }
+}
+
+
+.start-button {
+  /* Color and shadow */
+  background-color: #015C65b6;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.09) 0 4px 4px 0;
+  color: rgb(255, 255, 255);
+
+  margin-top: 5vh;
+  padding: 1vh 2vh;
+  border-radius: 5px;
+
+  display: flex;
+  margin-inline: auto;
+  justify-content: center;
+  align-items: center;
+
+  /* Font size,  */
+  font-family: "Poppins";
+  font-size: 25px;
+  font-weight: 600;
+  min-height: 5rem;
+  min-width: 16rem;
+  
+  /* Visual stuff */
+  cursor: pointer;
+  transition: all 250ms;
+}
+
+.start-button:hover {
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  color: rgba(0, 0, 0, 0.95);
+  transform: scale(1.05);
+}
+
+.start-link {
+  display: inline-block;
+  display: flex;
+  margin-inline: auto;
+  justify-content: center;
+  align-items: center;
+}
+  
+/* I can't figure out how to make this dynamic. */
+.dot {
+  position: absolute;
+  border-radius: 50%;
+  transition: width 0.3s, height 0.3s;
+  z-index: -10;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 
+                0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.dot:hover {
+  transition: all 200ms;
+  transform: scale(1.05);
+}
+
+@keyframes circ-float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+/* This is very inefficient. Needs to be refactored so it works better.
+Also needs improvement that the values/position better fits scaling pages, etc.*/
+
+/* Top left (large) */
+.dot:nth-child(1) {
+ background: radial-gradient(circle at 30% 30%, var(--quaternary-color), rgba(199, 245, 129, 0) 70%),
+              linear-gradient(180deg, var(--quinary-color), var(--secondary-color));
+  top: 10vh;
+  left: -6vw;
+  width: clamp(350px, 15vmin, 400px);
+  height: clamp(350px, 15vmin, 400px);
+  animation-delay: 0s;
+  animation: circ-float 10s ease-in-out infinite;
+}
+
+/* Top left (small) */
+.dot:nth-child(2) {
+  background: radial-gradient(circle at 30% 30%, var(--quaternary-color), rgba(199, 245, 129, 0) 70%),
+              linear-gradient(30deg, var(--primary-color), var(--quinary-color));
+  top: 50vh;
+  left: 25vw;
+  width: clamp(250px, 15vmin, 250px);
+  height: clamp(250px, 15vmin, 250px);
+  animation-delay: 1.5s;
+  animation: circ-float 7s ease-in-out infinite;
+}
+
+/* Middle left (closer to center) */
+.dot:nth-child(3) {
+  background: radial-gradient(circle at 30% 30%, var(--quaternary-color), rgba(199, 245, 129, 0) 70%),
+              linear-gradient(100deg, var(--primary-color), var(--quinary-color));
+  top: 70vh;
+  left: 50vw;
+  width: clamp(250px, 8vmin, 300px);
+  height: clamp(250px, 8vmin, 300px);
+  animation-delay: 1s;
+  animation: circ-float 5s ease-in-out infinite;
+}
+
+/* Top Right */
+.dot:nth-child(4) {
+  background: radial-gradient(circle at 30% 30%, var(--quaternary-color), rgba(199, 245, 129, 0) 70%),
+              linear-gradient(200deg, var(--primary-color), var(--quinary-color));
+  top: 13vh;
+  left: 70vw;
+  width: clamp(400px, 8vmin, 450px);
+  height: clamp(400px, 8vmin, 450px);
+  animation-delay: 0.7s;
+  animation: circ-float 6s ease-in-out infinite;
+}
+
+/* Middle left (closer to edge) */
+.dot:nth-child(5) {
+  background: radial-gradient(circle at 30% 30%, var(--quaternary-color), rgba(199, 245, 129, 0) 70%),
+              linear-gradient(60deg, var(--primary-color), var(--quinary-color));
+  top: 100vh;
+  left: 5vw;
+  width: clamp(150px, 6vmin, 175px);
+  height: clamp(150px, 6vmin, 175px);
+  animation-delay: 1.2s;
+  animation: circ-float 7s ease-in-out infinite;
+}
+
+/* Middle bottom (large) */
+.dot:nth-child(6) {
+  background: radial-gradient(circle at 30% 30%, var(--quaternary-color), rgba(199, 245, 129, 0) 70%),
+  linear-gradient(100deg, var(--primary-color), var(--quinary-color));
+  top: 110vh;
+  left: 14vw;
+  width: clamp(300px, 7vmin, 350px);
+  height: clamp(300px, 7vmin, 350px);
+  animation-delay: 0.4s;
+  animation: circ-float 4s ease-in-out infinite;
+}
+
+/* Right bottom */
+.dot:nth-child(7) {
+  background: radial-gradient(circle at 30% 30%, var(--quaternary-color), rgba(199, 245, 129, 0) 70%),
+  linear-gradient(230deg, var(--primary-color), var(--quinary-color));
+  top: 100vh;
+  left: 62vw;
+  width: clamp(350px, 7vmin, 300px);
+  height: clamp(350px, 7vmin, 300px);
+  animation-delay: 1s;
+  animation: circ-float 5s ease-in-out infinite;
+}
+
+/* Right (Small, Touching Wall) */
+.dot:nth-child(8) {
+  background: radial-gradient(circle at 30% 30%, var(--quaternary-color), rgba(199, 245, 129, 0) 70%),
+  linear-gradient(230deg, var(--primary-color), var(--quinary-color));
+  top: 80vh;
+  left: 90vw;
+  width: clamp(200px, 9vmin, 225px);
+  height: clamp(200px, 9vmin, 225px);
+  animation-delay: 0.2s;
+  animation: circ-float 8s ease-in-out infinite;
+}
+
+/* Possibly add extra dots into the background that are smaller to add the sense of depth to the page. */

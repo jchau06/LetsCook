@@ -1,0 +1,344 @@
+/* Used to increase the size of the input text box */
+
+body {
+    overflow: hidden;
+}
+
+.primary-container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-title-container{
+    height: 25%;
+    display: flex;
+
+}
+
+.title-text{
+    font-family: 'Poppins';
+    font-size: 3vmax;
+    font-weight: normal;
+    padding-top: 10vh;
+    padding-left: 8vw;
+}
+
+.title-text:after {
+    content: ""; 
+    display: block; 
+    width: 100%; 
+    padding-top: 1px; 
+    border-bottom: 1px solid #015C65; 
+}
+
+
+.prompt-title-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 7.5%;
+    
+}
+
+.subtitle-text{ /* Needs to scale properly with text - considering adding into main-container*/
+    font-family: 'Poppins';
+    font-size: 1.5vmax;
+    color: #015C65;
+    margin-top: -3px;
+    padding-left: 8vw;
+}
+
+.interaction-container{
+    display: flex;
+    height: 35%;
+}
+
+.text-box-container{
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 2vmax ;
+    padding-left: 8vmax ;
+    height: 10vmax;
+    width: 40vmax;
+}
+
+.large_input_textbox{
+    width: 35vmax;
+    height: 13vmax;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+
+    /* Style for text inside the box */
+    font-size: 20px;
+    font-family: 'Poppins';
+}
+
+.buttons-container{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 60vmax;
+}
+
+.submit-button-container{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+    width: 100%;
+    padding-top: 3vmax; 
+    padding-left: 6vmax; 
+}
+
+.submit-button{
+    background-color: #ffffff;
+    height: 4vmax;
+    width: 15vmax;
+    font-family: 'Poppins';
+    font-size: 2vmax;
+    color: #ffffff;
+    border-radius: 10px;
+    background-color: #015C65;
+
+}
+
+.submit-button:hover {
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    transform: scale(1.05);
+}
+
+.save-button{
+    background-color: #ffffff;
+    height: 3vmax;
+    width: 12vmax;
+    font-family: 'Poppins';
+    font-size: 1vmax;
+    color: #000000;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.save-button:hover {
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    transform: scale(1.05);
+}
+
+.save-button-container{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+    width: 100%;
+    padding-top: 2vmax; 
+    padding-left: 7.5vmax; 
+}
+
+/* Code to define the floating dots. Uses different colors
+compared to the dots in the welcome page.*/
+
+:root {
+    --primary-color: #3151fe;
+    --secondary-color: #008ed5;
+    --tertiary-color: #0eaedb;
+    --quaternary-color: #bde3f7;
+    --quinary-color: #f8fefe;
+    --bg-color: #e6f4f1
+  }
+
+.dot {
+    position: absolute;
+    border-radius: 50%;
+    transition: width 0.3s, height 0.3s;
+    z-index: -10;
+    
+    
+    /* animation: circ-float 6s ease-in-out infinite; */
+  
+    background-size: cover;
+    background-repeat: no-repeat;
+  
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 
+                  0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  @keyframes circ-float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-40px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  /* This is very inefficient. Needs to be refactored so it works better.
+  Also needs improvement that the values/position better fits scaling pages, etc.*/
+  
+  /* Top left (large) */
+  .dot:nth-child(1) {
+    top: 40vh;
+    left: -3vw;
+    width: clamp(50px, 15vmin, 400px);
+    height: clamp(50px, 15vmin, 400px);
+    animation-delay: 0s;
+    animation: circ-float 10s ease-in-out infinite;
+    background: radial-gradient(circle at 30% 30%, var(--quaternary-color), rgba(151, 225, 39, 0) 70%),
+                linear-gradient(180deg, var(--quinary-color), var(--secondary-color));
+  }
+
+  .dot:nth-child(2) {
+    background: radial-gradient(circle at 30% 30%, var(--quaternary-color), rgba(186, 233, 115, 0) 70%),
+                linear-gradient(30deg, var(--primary-color), var(--quinary-color));
+    top: 3vh;
+    left: 75vw;
+    width: clamp(250px, 15vmin, 250px);
+    height: clamp(250px, 15vmin, 250px);
+    animation-delay: 1.5s;
+    animation: circ-float 7s ease-in-out infinite;
+  }
+  
+  /* Middle left (closer to center) */
+  .dot:nth-child(3) {
+    background: radial-gradient(circle at 30% 30%, var(--quaternary-color), rgba(199, 245, 129, 0) 70%),
+                linear-gradient(100deg, var(--primary-color), var(--quinary-color));
+    top: 45vh;
+    left: 90vw;
+    width: clamp(100px, 8vmin, 300px);
+    height: clamp(100px, 8vmin, 300px);
+    animation-delay: 1s;
+    animation: circ-float 5s ease-in-out infinite;
+  }
+
+  /* Adapted card container for login.html */
+
+
+#card-container {
+    /* Defines the style of the container that the cards are held in. */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centers the cards */
+    gap: 50px; /* Adds space between cards */
+    padding-top: 30px;
+    overflow: auto;
+
+    background-color: #ffffff00;
+
+    scrollbar-width: none; /* Hides the scrollbar (Firefox) */
+}
+
+#card-container::-webkit-scrollbar {
+    /* Hides the scrollbar */
+    display: none;
+}
+
+.card {
+    /* Defines the style for the recipe cards */
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;   
+
+    /* height and width of card */
+    /* Reworked to fit narrow page dimensions. Still gives
+    too much extra space inbetween cards, however. */
+    aspect-ratio: 4 / 3;
+    flex: 1 1 200px;
+    max-width: 200px;
+ 
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.card img {
+    /* Need to test this on images with weird resolutions since 100% 
+    may warp the image badly, which may result in a weird image.*/
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.card::after {
+    /* Pseudo-element for the gradient overlay on the card */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* Defines the characteristics of the gradient */
+    background-image: linear-gradient(rgba(253, 253, 253, 0), rgba(115, 96, 96, .17), rgba(98, 98, 98, 0.30), rgba(98, 98, 98, 0.70));
+
+    /* Allows clicks to pass through to the link so the link could actually be redirected.*/
+    pointer-events: none; 
+    z-index: 1;
+}
+
+.card cook-time-text {
+    /* defines the style for the recipe title box on the bottom left of each card. */
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    margin: 0;
+    padding: 3px 5px;
+
+    font-size: 70%;
+    color: rgba(248, 248, 248, 1);
+    font-family: 'Poppins';
+
+    /* Optional code to add a box around the text, if gradient
+    contrast does not work out. */
+
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+
+    /* set text in front of gradient. */
+    z-index: 2; 
+}
+
+.card card-text {
+    /* defines the style for the recipe title box on the bottom left of each card. */
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    margin: 0;
+    padding: 3px 5px;
+
+    font-size: 70%;
+    color: rgba(248, 248, 248, 1);
+    font-family: 'Poppins';
+
+    /* Optional code to add a box around the text, if gradient
+    contrast does not work out. */
+
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+
+    /* set text in front of gradient. */
+    z-index: 2;   
+}
+
+.card:hover {
+    /* Defines scaling animation for the card when hovered over. */
+    transform: scale(1.05);
+}
+
+/* Behavior for the window when it is small. */
+@media (max-width: 750px) {
+    .card {
+        flex: 1 1 200px;
+        max-width: 200px;
+        font-size: 1.1em;
+    }
+}
+
+/* Behavior for the window when it is small. */
+@media (max-width: 500px) {
+    .card {
+        flex: 1 1 200px;
+        max-width: 200px;
+        font-size: 1.3em;
+    }
+}

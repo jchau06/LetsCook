@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Themed Dishes</title>
+    <link rel="stylesheet" href="../scripts/input.css">
+    <link rel="stylesheet" href="../scripts/loading.css">   
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+</head>
+
+<body>
+
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+
+    <!-- Loading overlay for when button is clicked.-->
+    <div id="loading-element" class="loading-overlay" style="visibility: hidden;"></div>
+    <img id="loading-animation" class="loading-gif" src="../static/loading.gif" alt="loading gif" style="visibility: hidden;">
+
+    <!-- Define the container text, and the textbox. -->
+    <div class="primary-container">
+        <div class="main-title-container">
+            <h1 class="title-text">Let's <span style="color: #34cccd">cook</span> up some recipes!</h1>
+            
+        </div>
+        
+        <div class="prompt-title-container">
+            <h2 class="subtitle-text"> enter your prompt below:</h2>
+        </div>
+        
+        <div class="interaction-container">
+            <div class="text-box-container">
+                <form id="recipeForm" action="" method="POST" enctype="multipart/form-data">
+                    <textarea class="large_input_textbox" id="cooking_recipe_input" rows="4" cols="50" placeholder="A savory and spicy menu for my best friend's birthday"></textarea>
+                </form>
+            </div>
+
+            <div class="buttons-container">
+                <div class="submit-button-container">
+                    <input class="submit-button" type="submit" value="Submit!" form="recipeForm">
+        
+                </div>
+        
+                <div class="save-button-container">
+                    <a href="card_handler.html">
+                        <input class="save-button" type="button" value="See Saved Recipes!">
+                    </a>
+        
+                </div>
+            </div>
+
+
+        </div>
+
+        <div id="card-container">
+            <!-- Cards will be appended here (defined in the script below)-->
+        </div>
+    </div>
+
+
+    <script src="../scripts/card.js"></script>
+    <script src="../scripts/loadingRouter.js"></script>
+    <script>
+
+        async function fetchRecipes() {
+            const params = new URLSearchParams();
+            params.set('number', 5)
+            url = `https://4017-128-195-97-190.ngrok-free.app/api/v1/fetch_recipes?` + params.toString()
+            const response = await fetch(url, {
+                method: "get",
+                headers: new Headers({
+                    "ngrok-skip-browser-warning": "69420",
+                }),
+            })
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            console.log(data)
+            return data
+        }
+
+        const cardContainer = document.getElementById('card-container');
+
+        // New cards can be created here using: (title, cooktime, imagelink, pagelink)
+        // const recipeCard = new Card('Delicious Recipe', 'image.jpg', 'recipe.html');
+        // cardContainer.appendChild(recipeCard.render());
+
+        // add cards here.
+
+        /*
+        
+        const recipeCard = new Card('Japanese Curry', 40, '', 'recipes.html');
+        cardContainer.appendChild(recipeCard.render());
+
+        const recipeCard2 = new Card('Tacos', 180, '../static/beef_tacos.jpg', 'recipe.html');
+        cardContainer.appendChild(recipeCard2.render());
+
+        const recipeCard3 = new Card('Funny Tacos', 60, '../static/beef_tacos.jpg', 'recipe.html');
+        cardContainer.appendChild(recipeCard3.render());
+
+        const recipeCard4 = new Card('Enchiladas', 60, '../static/beef_tacos.jpg', 'recipe.html');
+        cardContainer.appendChild(recipeCard4.render());
+
+        const recipeCard5 = new Card('Creamy Curry', 20, '../static/japanese_curry.jpg', 'recipe.html');
+        cardContainer.appendChild(recipeCard5.render());
+
+        
+        */
+
+        document.getElementById('recipeForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting
+            document.getElementById('loading-element').style.visibility = 'visible';
+            document.getElementById('loading-animation').style.visibility = 'visible';
+            const input = document.getElementById('cooking_recipe_input').value;
+            fetchRecipes().then(data => {
+                for (let i = 0; i < Object.keys(data).length; i++) {
+                    let recipe_data = data[Object.keys(data)[i]]
+                    const recipeCard = new Card(recipe_data['recipe_name'], recipe_data['prep_time'], recipe_data['image_link'], 'recipe.html');
+                    cardContainer.appendChild(recipeCard.render());
+                }
+                document.getElementById('loading-element').style.visibility = 'hidden';
+                document.getElementById('loading-animation').style.visibility = 'hidden';
+            })
+        });
+
+    </script>
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html class="h-full" lang="en-US" dir="ltr">
+  <head>
+    <link rel="preload" href="https://cdn.ngrok.com/static/fonts/euclid-square/EuclidSquare-Regular-WebS.woff" as="font" type="font/woff" crossorigin="anonymous" />
+    <link rel="preload" href="https://cdn.ngrok.com/static/fonts/euclid-square/EuclidSquare-RegularItalic-WebS.woff" as="font" type="font/woff" crossorigin="anonymous" />
+    <link rel="preload" href="https://cdn.ngrok.com/static/fonts/euclid-square/EuclidSquare-Medium-WebS.woff" as="font" type="font/woff" crossorigin="anonymous" />
+    <link rel="preload" href="https://cdn.ngrok.com/static/fonts/euclid-square/EuclidSquare-Semibold-WebS.woff" as="font" type="font/woff" crossorigin="anonymous" />
+    <link rel="preload" href="https://cdn.ngrok.com/static/fonts/euclid-square/EuclidSquare-MediumItalic-WebS.woff" as="font" type="font/woff" crossorigin="anonymous" />
+    <link rel="preload" href="https://cdn.ngrok.com/static/fonts/ibm-plex-mono/IBMPlexMono-Text.woff" as="font" type="font/woff" crossorigin="anonymous" />
+    <link rel="preload" href="https://cdn.ngrok.com/static/fonts/ibm-plex-mono/IBMPlexMono-TextItalic.woff" as="font" type="font/woff" crossorigin="anonymous" />
+    <link rel="preload" href="https://cdn.ngrok.com/static/fonts/ibm-plex-mono/IBMPlexMono-SemiBold.woff" as="font" type="font/woff" crossorigin="anonymous" />
+    <link rel="preload" href="https://cdn.ngrok.com/static/fonts/ibm-plex-mono/IBMPlexMono-SemiBoldItalic.woff" as="font" type="font/woff" crossorigin="anonymous" />
+    <meta charset="utf-8">
+    <meta name="author" content="ngrok">
+    <meta name="description" content="ngrok is the fastest way to put anything on the internet with a single command.">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link id="style" rel="stylesheet" href="https://cdn.ngrok.com/static/css/error.css">
+    <noscript>You are about to visit 4017-128-195-97-190.ngrok-free.app, served by 128.195.97.190. This website is served for free through ngrok.com. You should only visit this website if you trust whoever sent the link to you. (ERR_NGROK_6024)</noscript>
+    <script id="script" src="https://cdn.ngrok.com/static/js/error.js" type="text/javascript"></script>
+  </head>
+  <body class="h-full" id="ngrok">
+    <div id="root" data-payload="eyJjZG5CYXNlIjoiaHR0cHM6Ly9jZG4ubmdyb2suY29tLyIsImNvZGUiOiI2MDI0IiwiaG9zdHBvcnQiOiI0MDE3LTEyOC0xOTUtOTctMTkwLm5ncm9rLWZyZWUuYXBwIiwibWVzc2FnZSI6IllvdSBhcmUgYWJvdXQgdG8gdmlzaXQgNDAxNy0xMjgtMTk1LTk3LTE5MC5uZ3Jvay1mcmVlLmFwcCwgc2VydmVkIGJ5IDEyOC4xOTUuOTcuMTkwLiBUaGlzIHdlYnNpdGUgaXMgc2VydmVkIGZvciBmcmVlIHRocm91Z2ggbmdyb2suY29tLiBZb3Ugc2hvdWxkIG9ubHkgdmlzaXQgdGhpcyB3ZWJzaXRlIGlmIHlvdSB0cnVzdCB3aG9ldmVyIHNlbnQgdGhlIGxpbmsgdG8geW91LiIsInNlcnZpbmdJUCI6IjEyOC4xOTUuOTcuMTkwIiwidGl0bGUiOiJPSyJ9"></div>
+  </body>
+</html>
